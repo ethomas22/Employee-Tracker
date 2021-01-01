@@ -103,12 +103,27 @@ function options(){
             if (answer.initial === "view departments") {
                 inquirer
                 .prompt()
-                .then()
+                .then(viewDepartments)
+            }
+            if (answer.initial === "view role") {
+                inquirer
+                .prompt()
+                .then(viewRole)
+            }
+            if (answer.initial === "view employee") {
+                inquirer
+                .prompt()
+                .then(viewEmployee)
+            }
+            if (answer.initial === "update employee role") {
+                inquirer
+                .prompt(updateEmployeeQuestions)
+                .then(updateEmployee)
             }
         })
 }
 
-// questions: view departments', 'view role', 'view employee', 'update employee role'
+// questions: view employee', 'update employee role'
 // function for add department
 function addDepartment(answer) {
     tracker.query("insert into department (departmentName) values (?)", answer.departmentName, function (err) {
@@ -120,29 +135,47 @@ function addDepartment(answer) {
         }
     })
 }
-// add a role
+
+
+// view a role
+function viewRole() {
+
+}
+
 
 // add an employee
 function addEmployee() {
 
 }
+
+
 // view department
 function viewDepartments() {
     tracker.query("select department from departmentName;", function (err) {
         if (err)
             throw err;
         else {
-            
+           options();
         }
-    }) 
+    }); 
 }
+
+
 // add a role
 function addRole() {
 
 }
+
+
 // view employee
+function viewEmployee() {
+
+}
+
 
 // update employee role
-
+function updateEmployee() {
+    tracker.query
+}
 
 
