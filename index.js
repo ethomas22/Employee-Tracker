@@ -8,30 +8,28 @@ var tracker = sql.createConnection({
     database:"tracker"
 });
 
-var questions = [
+var question = [
     {
         type: 'list',
-        message: 'What are you adding?',
-        name: 'add' 
-    },
-    {
-        type: 'list',
-        message: 'What do you want to view?',
-        name: 'view'
-    },
+        message: 'What do you want to do?',
+        name: 'initial', 
+        choices: ['add department', 'add employee', 'add role', 'view departments', 'view role', 'view employee', 'update employee role']
+    }];
+
+ var updateEmployeeQuestions = [
     {
         type: 'input',
         message: 'Which employee do you want to update?',
+        name: 'update'
+    },
+    {
+        type: 'input',
+        message: 'What is the new role for this employee?',
         name: 'update'
     }
 ];
 
 var departmentQuestions = [
-    {
-        type: 'input',
-        message: 'What is the department ID?',
-        name: 'departmentId'
-    },
     {
         type: 'input',
         message: 'What is the department name?',
@@ -40,11 +38,6 @@ var departmentQuestions = [
 ];
 
 var roleQuestions = [
-    {
-        type: 'input',
-        message: 'What is the role id?',
-        name: 'roleId'
-    },
     {
         type: 'input',
         message: 'What is your role tile?',
@@ -65,11 +58,6 @@ var roleQuestions = [
 var employeeQuestions = [
     {
         type: 'input',
-        message: 'What is your employee id?',
-        name: 'employeeId'
-    },
-    {
-        type: 'input',
         message: 'What is your first name?',
         name: 'firstName'
     },
@@ -80,25 +68,55 @@ var employeeQuestions = [
     },
     {
         type: 'input',
-        message: 'What is your role id?',
-        name: 'roleId'
-    },
-    {
-        type: 'input',
         message: 'What is your manager id?',
         name: 'managerId'
     }
 ];
 
 tracker.connect(
-    function (
-        err
-    ) {
+    function (err) {
         if (err) {
-            throw err
-        };
-        
-    }
+            throw err  
+        } else {
+            options()
+        }       
+    }  
 );
+function options(){
+    inquirer.prompt(question)
+        .then(function (answer){
+            if (answer.initial === "add department") {
+                inquirer
+                .prompt(departmentQuestions)
+                .then(addDepartment)
+            }
+            if
+        })
+}
+// function for add department
+function addDepartment(answer) {
+    tracker.query("insert into department (departmentName) values (?)", answer.departmentName, function (err) {
+        if (err) 
+            throw err;
+        else {
+            console.log("Success")
+            options()
+        }
+    })
+}
+// add a role
+
+// add an employee
+
+// view department
+function viewDepartments() {
+    // selecting
+}
+// view a role
+
+// view employee
+
+// update employee role
+
 
 
