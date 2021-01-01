@@ -90,9 +90,25 @@ function options(){
                 .prompt(departmentQuestions)
                 .then(addDepartment)
             }
-            if
+            if (answer.initial === "add employe") {
+                inquirer
+                .prompt(employeeQuestions)
+                .then(addEmployee)
+            }
+            if (answer.initial === "add role") {
+                inquirer
+                .prompt(roleQuestions)
+                .then(addRole)
+            }
+            if (answer.initial === "view departments") {
+                inquirer
+                .prompt()
+                .then()
+            }
         })
 }
+
+// questions: view departments', 'view role', 'view employee', 'update employee role'
 // function for add department
 function addDepartment(answer) {
     tracker.query("insert into department (departmentName) values (?)", answer.departmentName, function (err) {
@@ -107,13 +123,23 @@ function addDepartment(answer) {
 // add a role
 
 // add an employee
+function addEmployee() {
 
+}
 // view department
 function viewDepartments() {
-    // selecting
+    tracker.query("select department from departmentName;", function (err) {
+        if (err)
+            throw err;
+        else {
+            
+        }
+    }) 
 }
-// view a role
+// add a role
+function addRole() {
 
+}
 // view employee
 
 // update employee role
